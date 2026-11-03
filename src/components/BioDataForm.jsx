@@ -73,15 +73,6 @@ const DAY_OPTIONS = Array.from({ length: 31 }, (_, i) => String(i + 1));
 // Newest first, built from START_YEAR and END_YEAR in config.js.
 const YEAR_OPTIONS = Array.from({ length: END_YEAR - START_YEAR + 1 }, (_, i) => String(END_YEAR - i));
 
-const CLASS_OPTIONS = [
-  "First Class",
-  "Second Class Upper",
-  "Second Class Lower",
-  "Third Class",
-  "Pass",
-  "Other",
-];
-
 const QUALIFICATION_OPTIONS = ["SSCE", "OND", "NCE", "HND", "B.Sc/B.A", "M.Sc/MBA", "PhD", "Other"];
 
 // Order used to focus the first invalid field (matches top-to-bottom layout).
@@ -110,7 +101,6 @@ const REVIEW_ROWS = [
   ["course", "Course of study"],
   ["entryYear", "Year of entry"],
   ["gradYear", "Year of graduation"],
-  ["classOfDegree", "Class of degree"],
   ["societyRole", "Student union / society role"],
   ["email", "Email"],
   ["phone", "Phone / WhatsApp"],
@@ -142,7 +132,6 @@ const EMPTY_VALUES = {
   course: "",
   entryYear: "",
   gradYear: "",
-  classOfDegree: "",
   societyRole: "",
   email: "",
   phone: "",
@@ -241,7 +230,6 @@ function buildRecord(v) {
     faculty: v.faculty,
     department: v.department,
     course: v.course.trim(),
-    classOfDegree: v.classOfDegree,
     societyRole: v.societyRole.trim(),
     employer: v.employer.trim(),
     jobTitle: v.jobTitle.trim(),
@@ -574,10 +562,6 @@ export default function BioDataForm({ onSuccess }) {
               required
               aria-required="true"
             />
-          </Field>
-
-          <Field name="classOfDegree" label="Class of degree">
-            <SelectInput name="classOfDegree" value={v.classOfDegree} onChange={update("classOfDegree")} options={CLASS_OPTIONS} />
           </Field>
 
           <Field name="societyRole" label="Student union or society role" helper="Optional. e.g. Class Rep, PRO, Chapter Secretary." className="sm:col-span-2">
